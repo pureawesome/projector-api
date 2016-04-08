@@ -11,7 +11,7 @@ gem 'active_model_serializers', '0.10.0.rc4'
 
 group :development, :test do
   gem 'byebug'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '3.5.0.beta3'
 end
 
 group :development do
