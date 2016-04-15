@@ -12,10 +12,10 @@ development:
 
 test:
   <<: *default
-  database: projector-api_test
+  database: projector2-api_test
 
 production:
   <<: *default
   database: projector-api_production
   username: projector-api
-  password: <%= ENV['PROJECTOR-API_DATABASE_PASSWORD'] %>
+  password: <%= ENV['PROJECTOR2-API_DATABASE_PASSWORD'] %>

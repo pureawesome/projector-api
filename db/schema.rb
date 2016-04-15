@@ -11,6 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20160415015437) do
+
+  create_table "projects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.text     "description",      limit: 65535
+    t.date     "start_date"
+    t.date     "project_end_date"
+    t.date     "actual_end_date"
+    t.decimal  "budget",                         precision: 9, scale: 2
+    t.decimal  "cost",                           precision: 9, scale: 2
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
+  end
 
 end

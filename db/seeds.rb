@@ -5,3 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Project.destroy_all
+
+100.times do
+  project = Project.create(
+    name: Faker::App.name,
+    description: Faker::Company.catch_phrase,
+    start_date: Faker::Date.backward(365),
+    project_end_date: Faker::Date.backward(60),
+    actual_end_date: Faker::Date.backward(14),
+    budget: Faker::Number.decimal(4,2),
+    cost: Faker::Number.decimal(4, 2)
+  )
+end
