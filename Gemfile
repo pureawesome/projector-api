@@ -8,6 +8,7 @@ gem 'active_model_serializers', '0.10.0.rc4'
 gem 'faker'
 gem 'rack-cors'
 gem 'rack-attack'
+gem 'bcrypt'
 
 group :development, :test do
   gem 'byebug'

@@ -44,6 +44,7 @@ GEM
       tzinfo (~> 1.1)
     ansi (1.5.0)
     arel (7.0.0)
+    bcrypt (3.1.11)
     builder (3.2.2)
     byebug (8.2.4)
     concurrent-ruby (1.0.1)
@@ -145,6 +146,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (= 0.10.0.rc4)
+  bcrypt
   byebug
   faker
   listen (~> 3.0.5)
