@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Project.destroy_all
 
-100.times do
+10.times do
   project = Project.create(
     name: Faker::App.name,
     description: Faker::Company.catch_phrase,
