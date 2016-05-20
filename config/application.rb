@@ -20,6 +20,8 @@ module ProjectorApi
   class Application < Rails::Application
     config.api_only = true
 
+    config.autoload_paths << Rails.root.join('lib')
+
     config.middleware.use Rack::Attack
 
     config.middleware.insert_before 0, "Rack::Cors" do

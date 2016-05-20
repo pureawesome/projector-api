@@ -9,6 +9,10 @@ gem 'faker'
 gem 'rack-cors'
 gem 'rack-attack'
 gem 'bcrypt'
+gem 'jwt'
+gem 'resque'
+gem 'resque-scheduler'
+gem 'resque-web'
 
 group :development, :test do
   gem 'byebug'
