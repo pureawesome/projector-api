@@ -45,5 +45,4 @@ class ApplicationController < ActionController::API
   def authentication_failure
     render json: { errors: ['Authentication Failed'] }, status: 401
   end
-  # adam albrecht authenticating your angular rails app with json web tokens
 end

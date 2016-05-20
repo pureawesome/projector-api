@@ -10,9 +10,7 @@ gem 'rack-cors'
 gem 'rack-attack'
 gem 'bcrypt'
 gem 'jwt'
-gem 'resque'
-gem 'resque-scheduler'
-gem 'resque-web'
+gem 'sidekiq'
 
 group :development, :test do
   gem 'byebug'
