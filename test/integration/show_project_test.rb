@@ -5,7 +5,7 @@ class ListProjectsTest < ActionDispatch::IntegrationTest
     project1 = Project.create!(name: 'Test Project 1',
                     description: 'Test Description',
                     start_date: '2016-01-01',
-                    project_end_date: '2016-12-31',
+                    projected_end_date: '2016-12-31',
                     actual_end_date: '2016-12-01',
                     budget: 5000.00,
                     cost: 5500.00)

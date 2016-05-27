@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 20160513025714) do
   create_table "projects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.text     "description",      limit: 65535
-    t.date     "start_date"
-    t.date     "project_end_date"
+    t.datetime "start_date"
+    t.datetime "projected_end_date"
     t.date     "actual_end_date"
     t.decimal  "budget",                         precision: 9, scale: 2
     t.decimal  "cost",                           precision: 9, scale: 2

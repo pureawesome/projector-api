@@ -62,7 +62,7 @@ class ProjectsController < ApplicationController
 
   def project_params
     project_params ||= params[:project]
-    project_params ? project_params.permit(:name, :description, :start_date, :end_date_projected, :budget) : {}
+    project_params ? project_params.permit(:name, :description, :start_date, :projected_end_date, :budget) : {}
   end
 
   def render_json(var)

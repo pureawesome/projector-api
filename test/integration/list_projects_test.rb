@@ -12,14 +12,14 @@ class ListProjectsTest < ActionDispatch::IntegrationTest
     Project.create!(name: 'Test Project 1',
                     description: 'Test Description',
                     start_date: '2016-01-01',
-                    project_end_date: '2016-12-31',
+                    projected_end_date: '2016-12-31',
                     actual_end_date: '2016-12-01',
                     budget: 5000.00,
                     cost: 5500.00)
     Project.create!(name: 'Test Project 2',
                     description: 'Test 2 Description',
                     start_date: '2016-02-02',
-                    project_end_date: '2016-12-32',
+                    projected_end_date: '2016-12-32',
                     actual_end_date: '2016-12-02',
                     budget: 2000.00,
                     cost: 2500.00)
