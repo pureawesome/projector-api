@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ListProjectsTest < ActionDispatch::IntegrationTest
+class ShowProjectTest < ActionDispatch::IntegrationTest
   test 'show project with content' do
     project1 = Project.create!(name: 'Test Project 1',
                     description: 'Test Description',

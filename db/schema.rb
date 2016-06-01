@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160513025714) do
+ActiveRecord::Schema.define(version: 20160527191839) do
 
   create_table "api_keys", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "access_token"
@@ -21,17 +21,51 @@ ActiveRecord::Schema.define(version: 20160513025714) do
 
   add_index "api_keys", ["access_token"], name: "index_api_keys_on_access_token", using: :btree
 
+  create_table "bookings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "project_id"
+    t.integer  "resource_id"
+    t.datetime "start_datetime"
+    t.datetime "end_datetime"
+  end
+
+  add_index "bookings", ["project_id"], name: "index_bookings_on_project_id", using: :btree
+  add_index "bookings", ["resource_id"], name: "index_bookings_on_resource_id", using: :btree
+
   create_table "projects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.text     "description",      limit: 65535
+    t.text     "description",        limit: 65535
     t.datetime "start_date"
     t.datetime "projected_end_date"
     t.date     "actual_end_date"
-    t.decimal  "budget",                         precision: 9, scale: 2
-    t.decimal  "cost",                           precision: 9, scale: 2
-    t.datetime "created_at",                                             null: false
-    t.datetime "updated_at",                                             null: false
+    t.decimal  "budget",                           precision: 9, scale: 2
+    t.decimal  "cost",                             precision: 9, scale: 2
+    t.datetime "created_at",                                               null: false
+    t.datetime "updated_at",                                               null: false
   end
+
+  create_table "resources", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.text     "description", limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.text     "description", limit: 65535
+    t.datetime "start_date"
+    t.datetime "due_date"
+    t.integer  "status"
+    t.integer  "project_id"
+    t.integer  "projects_id"
+    t.integer  "user_id"
+    t.integer  "users_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "tasks", ["projects_id"], name: "index_tasks_on_projects_id", using: :btree
+  add_index "tasks", ["users_id"], name: "index_tasks_on_users_id", using: :btree
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -41,4 +75,8 @@ ActiveRecord::Schema.define(version: 20160513025714) do
     t.datetime "password_reset_sent_at"
   end
 
+  add_foreign_key "bookings", "projects"
+  add_foreign_key "bookings", "resources"
+  add_foreign_key "tasks", "projects", column: "projects_id"
+  add_foreign_key "tasks", "users", column: "users_id"
 end

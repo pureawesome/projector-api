@@ -23,6 +23,11 @@ class ProjectsController < ApplicationController
     update_project or render 'edit'
   end
 
+  def destroy
+    load_project
+    delete_project
+  end
+
   private
 
   def restrict_access
@@ -58,6 +63,10 @@ class ProjectsController < ApplicationController
     else
       render json: @project.errors, status: :unprocessable_entity
     end
+  end
+
+  def delete_project
+    @project.destroy
   end
 
   def project_params

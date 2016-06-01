@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   # Serve websocket cable requests in-process
   # mount ActionCable.server => '/cable'
   resources :password_resets, only: [:create, :update]
-  resources :projects, only: [:index, :show, :create, :update]
+  resources :projects, only: [:index, :show, :create, :update, :destroy] do
+    resources :tasks
+  end
   resources :users
+  resources :bookings
+  resources :resources
 end
