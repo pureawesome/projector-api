@@ -20,6 +20,7 @@ class ApplicationController < ActionController::API
   rescue JWT::ExpiredSignature
     raise AuthenticationTimeoutError
   rescue JWT::VerificationError, JWT::DecodeError
+
     raise AuthenticationFailureError
   end
 
@@ -28,10 +29,14 @@ class ApplicationController < ActionController::API
     http_auth_token && decoded_auth_token && decoded_auth_token[:user_id]
   end
 
-  def decoded_auth_token
-    @decoded_auth_token ||= if request.headers['Authorization'].present?
+  def http_auth_token
+    @http_auth_token ||= if request.headers['Authorization'].present?
       request.headers['Authorization'].split(' ').last
     end
+  end
+
+  def decoded_auth_token
+    @decoded_auth_token ||= AuthToken.decode(http_auth_token)
   end
 
   def authentication_timout

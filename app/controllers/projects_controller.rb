@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   include ActionController::HttpAuthentication::Token::ControllerMethods
-  # before_action :restrict_access
+  before_action :restrict_access
 
   def index
     load_projects
@@ -32,7 +32,8 @@ class ProjectsController < ApplicationController
 
   def restrict_access
     authenticate_or_request_with_http_token do |token, options|
-      ApiKey.exists?(access_token: token)
+      hash = AuthToken.decode(token)
+      User.exists?(hash['user_id'])
     end
   end
 
