@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   include ActionController::HttpAuthentication::Token::ControllerMethods
-  before_action :restrict_access
+  before_action :authenticate_request!
 
   def index
     load_projects
@@ -9,7 +9,8 @@ class ProjectsController < ApplicationController
 
   def show
     load_project
-    render_json(@project)
+    load_tasks
+    render_json({ :project => @project, :tasks => @tasks })
   end
 
   def create
@@ -29,13 +30,6 @@ class ProjectsController < ApplicationController
   end
 
   private
-
-  def restrict_access
-    authenticate_or_request_with_http_token do |token, options|
-      hash = AuthToken.decode(token)
-      User.exists?(hash['user_id'])
-    end
-  end
 
   def load_projects
     @projects ||= project_scope
@@ -70,12 +64,16 @@ class ProjectsController < ApplicationController
     @project.destroy
   end
 
+  def load_tasks
+    @tasks ||= @project.tasks
+  end
+
   def project_params
     project_params ||= params[:project]
     project_params ? project_params.permit(:name, :description, :start_date, :projected_end_date, :budget) : {}
   end
 
-  def render_json(var)
+  def render_json(var, relation = nil)
     render json: var, status: 200
   end
 

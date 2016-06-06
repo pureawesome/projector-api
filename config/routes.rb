@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # mount ActionCable.server => '/cable'
   resources :password_resets, only: [:create, :update]
   resources :projects, only: [:index, :show, :create, :update, :destroy] do
-    resources :tasks
+    resources :tasks, only: [:show]
   end
   resources :users
   resources :bookings
