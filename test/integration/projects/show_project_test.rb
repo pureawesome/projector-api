@@ -1,6 +1,12 @@
 require 'test_helper'
 
 class ShowProjectTest < ActionDispatch::IntegrationTest
+  def setup
+    user = User.create!(name:'test', email:'test@foo.com', password: 'test')
+    @token = AuthToken.encode( {user_id: user.id} )
+  end
+
+
   test 'show project with content' do
     project1 = Project.create!(name: 'Test Project 1',
                     description: 'Test Description',
@@ -10,10 +16,10 @@ class ShowProjectTest < ActionDispatch::IntegrationTest
                     budget: 5000.00,
                     cost: 5500.00)
 
-    get project_url(project1)
+    get "/projects/#{project1.id}", headers: { 'Authorization' => "Bearer #{@token}" }
 
     assert_equal 200, response.status
     assert_equal Mime[:json], response.content_type
-    assert_equal project1.name, JSON.parse(response.body)["name"]
+    assert_equal project1.name, JSON.parse(response.body)["project"]["name"]
   end
 end
