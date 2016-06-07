@@ -1,11 +1,11 @@
-en:
+de:
   hello: "Hello world"
   projects:
     index:
-      title: 'Project Listing'
+      title: 'Liste von Projekte'
       subtitle: 'in the pipeline.'
   activerecord:
     attributes:
       project:
-        name: 'Project Name Override'
-        description: 'Project Description Override'
+        name: 'Projekte'
+        description: 'Beschreibung'

@@ -11,6 +11,7 @@ gem 'rack-attack'
 gem 'bcrypt'
 gem 'jwt'
 gem 'sidekiq'
+gem 'redis'
 
 group :development, :test do
   gem 'byebug'

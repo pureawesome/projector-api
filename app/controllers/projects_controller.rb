@@ -10,7 +10,8 @@ class ProjectsController < ApplicationController
   def show
     load_project
     load_tasks
-    render_json({ :project => @project, :tasks => @tasks })
+    load_bookings
+    render_json({ :project => @project, :tasks => @tasks, :bookings => @bookings })
   end
 
   def create
@@ -66,6 +67,10 @@ class ProjectsController < ApplicationController
 
   def load_tasks
     @tasks ||= @project.tasks
+  end
+
+  def load_bookings
+    @bookings ||= @project.bookings
   end
 
   def project_params

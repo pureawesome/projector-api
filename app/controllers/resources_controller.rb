@@ -9,7 +9,8 @@ class ResourcesController < ApplicationController
 
   def show
     load_resource
-    render_json(@resource)
+    load_booking
+    render_json({resource: @resource, bookings: @bookings})
   end
 
   def update
@@ -36,6 +37,10 @@ class ResourcesController < ApplicationController
 
   def load_resource
     @resource ||= resource_scope.find(params[:id])
+  end
+
+  def load_booking
+    @bookings = @resource.bookings
   end
 
   def build_resource

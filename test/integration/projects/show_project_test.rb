@@ -1,12 +1,6 @@
 require 'test_helper'
 
 class ShowProjectTest < ActionDispatch::IntegrationTest
-  def setup
-    user = User.create!(name:'test', email:'test@foo.com', password: 'test')
-    @token = AuthToken.encode( {user_id: user.id} )
-  end
-
-
   test 'show project with content' do
     project1 = Project.create!(name: 'Test Project 1',
                     description: 'Test Description',

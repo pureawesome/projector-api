@@ -6,7 +6,7 @@ class DeleteProjectTest < ActionDispatch::IntegrationTest
                                description: 'Test Description')
 
     count = Project.count
-    delete "/projects/#{project1.id}"
+    delete "/projects/#{project1.id}", headers: { 'Authorization' => "Bearer #{@token}" }
 
     assert_equal 204, response.status
     assert_equal Project.count, count - 1

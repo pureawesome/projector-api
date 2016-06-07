@@ -165,10 +165,14 @@ DEPENDENCIES
   rack-attack
   rack-cors
   rails (>= 5.0.0.beta3, < 5.1)
+  redis
   shoulda (~> 3.5)
   shoulda-context
   shoulda-matchers (~> 2.0)
   sidekiq
 
+RUBY VERSION
+   ruby 2.3.0p0
+
 BUNDLED WITH
-   1.11.2
+   1.12.5

@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ListProjectsTest < ActionDispatch::IntegrationTest
   test 'listing projects without content' do
-    get '/projects'
+    get '/projects', headers: { 'Authorization' => "Bearer #{@token}" }
 
     assert_equal 200, response.status
     assert_equal Mime[:json], response.content_type
@@ -24,7 +24,7 @@ class ListProjectsTest < ActionDispatch::IntegrationTest
                     budget: 2000.00,
                     cost: 2500.00)
 
-    get '/projects'
+    get '/projects', headers: { 'Authorization' => "Bearer #{@token}" }
 
     assert_equal 200, response.status
     assert_equal Mime[:json], response.content_type

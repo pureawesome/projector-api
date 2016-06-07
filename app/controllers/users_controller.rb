@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   def create
     @user = User.create(user_params)
     if @user.save
+      p 'tewt'
       UserMailer.test_email(@user.email).deliver_later
       redirect_to @user
     else

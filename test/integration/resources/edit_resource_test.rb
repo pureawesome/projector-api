@@ -7,7 +7,7 @@ class EditResourceTest < ActionDispatch::IntegrationTest
 
     put "/resources/#{resource.id}",
       params: { name: 'Updated Title', value: 'Updated Description' }.to_json,
-      headers: { 'Accept' => Mime[:json], 'Content-Type' => Mime[:json].to_s }
+      headers: { 'Accept' => Mime[:json], 'Content-Type' => Mime[:json].to_s, 'Authorization' => "Bearer #{@token}" }
 
     assert_equal 200, response.status
     assert_equal Mime[:json], response.content_type

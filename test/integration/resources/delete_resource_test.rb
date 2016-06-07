@@ -6,7 +6,7 @@ class DeleteResourceTest < ActionDispatch::IntegrationTest
                                description: 'Test Description')
 
     count = Resource.count
-    delete "/resources/#{resource.id}"
+    delete "/resources/#{resource.id}", headers: { 'Authorization' => "Bearer #{@token}" }
 
     assert_equal 204, response.status
     assert_equal Resource.count, count - 1

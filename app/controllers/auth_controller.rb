@@ -10,7 +10,7 @@ class AuthController < ApplicationController
   end
 
   def register
-    user = User.new(user_params)
+    user = User.new(email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
     if user.save
       render json: authentication_payload(user), status: 200
     else
@@ -20,7 +20,6 @@ class AuthController < ApplicationController
 
   private
   def authentication_payload(user)
-    p 'authenticate payload'
     return nil unless user && user.id
     { auth_token: AuthToken.encode( {user_id: user.id} ), user: {id: user.id, email: user.email } }
   end
