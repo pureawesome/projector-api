@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   resources :users
   resources :bookings
   resources :resources
+  resources :translations, only: [:index, :create]
 end
